@@ -5,4 +5,16 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - name: print hello world
-       run: echo "hello vani"
+       run: echo " this is build job"
+     test:
+     runs-on: ubuntu-latest
+     needs: build
+     steps:
+       - name: print hello world
+       run: echo " this is test job"
+      deploy:
+       runs-on: ubbuntu-latest
+       needs: test
+       steps:
+         - name: Print hello world
+           run: echo "this is deploy job"
