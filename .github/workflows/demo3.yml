@@ -1,20 +1,26 @@
 name: Hello world
-on:  workflow_dispatch
+
+on:
+  workflow_dispatch:
+
 jobs:
-  hello:
-   runs-on: ubuntu-latest
-   steps:
-     - name: print hello world
-       run: echo " this is build job"
-   test:
-      runs-on: ubuntu-latest
-      needs: build
-     steps:
-       - name: print hello world
-         run: echo " this is test job"
-   deploy:
-       runs-on: ubbuntu-latest
-       needs: test
-       steps:
-         - name: Print hello world
-           run: echo "this is deploy job"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print build job
+        run: echo "This is build job"
+
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Print test job
+        run: echo "This is test job"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Print deploy job
+        run: echo "This is deploy job"
+
